@@ -40,4 +40,14 @@ class PullRequests
       h[group_key] = h.fetch(group_key, 0) + 1
     end
   end
+
+  def comments(pr)
+    @github.comments.list(number: pr.number, per_page: 1000)
+  end
+
+  def comments_count(since = TIME_WINDOW)
+    fetch_since(since).each_with_object({}) do |pr, h|
+      h[pr.number] = comments(pr).size
+    end
+  end
 end
