@@ -29,7 +29,9 @@ class PullRequests
 
   # Examples
   #   PullRequests.new('rdstation', state: 'all').count { |pr| pr.state }
+  #   => { 'open' => 16, 'closed' => 42 }
   #   PullRequests.new('rdstation', state: 'open').count { |pr| pr.user.login }
+  #   => { 'user1' => 1, 'user2' => 4, 'user3' => 2 }
   def count(since = TIME_WINDOW)
     return fetch_since(since).size unless block_given?
 
