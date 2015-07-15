@@ -8,5 +8,3 @@ require 'rd_github_stats/pull_request'
 require 'rd_github_stats/issue'
 require 'rd_github_stats/team'
 require 'rd_github_stats/pull_requests_reports'
-
-

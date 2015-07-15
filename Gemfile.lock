@@ -3,7 +3,7 @@ PATH
   specs:
     rd-github-stats (0.0.0)
       activesupport (~> 4.2)
-      octokit (~> 4.0.1)
+      octokit (~> 4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -60,10 +60,10 @@ DEPENDENCIES
   bundler (~> 1.8)
   minitest (~> 5.5)
   minitest-reporters (~> 1.0)
-  pry
+  pry (~> 0.10)
   rake (~> 10.4)
   rd-github-stats!
-  vcr (~> 2.9.3)
+  vcr (~> 2.9)
   webmock (~> 1.21)
 
 BUNDLED WITH
