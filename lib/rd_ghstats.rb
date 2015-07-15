@@ -1,16 +1,18 @@
-require 'github_api'
+require 'octokit'
 require 'active_support/all'
 require 'pry'
 
-require 'rd_ghstats/pull_requests'
+require_relative 'rd_ghstats/repo'
+require_relative 'rd_ghstats/report_helper'
 
-def commits(repo: 'rdstation')
-  gh = Github::Client::Repos.new repo: repo
-  gh.commits.list.each do |c|
-    puts "#{c.commit.committer.name} - #{c.commit.message}"
-  end
+Octokit.configure do |c|
+  c.login = 'lucasandre'
+  c.password = '575f946dfb6be40d3672c8d4776814436e6dc4b4'
+  c.auto_paginate = true
 end
 
-#prs = PullRequests.new('rdstation', state: 'open')
-#fetched = prs.fetch
-#comments = prs.comments(fetched.first)
+repo_name = 'ResultadosDigitais/rdstation'
+repo = Repo.new repo_name
+client = Octokit.client
+
+binding.pry
