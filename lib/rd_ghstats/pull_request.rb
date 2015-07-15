@@ -23,4 +23,8 @@ class PullRequest
   def comments
     @client.pull_comments @repo_name, @number
   end
+
+  def commits
+    @client.pull_commits @repo_name, @number
+  end
 end
