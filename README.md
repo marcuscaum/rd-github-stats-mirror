@@ -37,7 +37,7 @@ open_issues = repo.issues(since: 1.week.ago)
 all_issues = repo.issues(state: 'all', since: 1.week.ago)
 
 # Some PR stats
-pr_stats = PullRequestsReport.new open_prs
+pr_stats = PullRequestsStats.new open_prs
 
 # Number of comments by PR
 pr_stats.count_all_comments
