@@ -1,5 +1,5 @@
 class PullRequest
-  attr_reader :repo_name, :number
+  attr_accessor :repo_name, :number
 
   def initialize(repo_name, number)
     @repo_name = repo_name

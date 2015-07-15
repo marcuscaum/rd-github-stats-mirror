@@ -1,5 +1,5 @@
 class Team
-  attr_reader :name, :members
+  attr_accessor :name, :members
 
   def initialize(name, members)
     @name = name

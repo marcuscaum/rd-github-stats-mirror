@@ -1,4 +1,5 @@
 class Issue
+  attr_accessor :repo_name, :number
 
   def initialize(repo_name, number)
     @repo_name = repo_name
