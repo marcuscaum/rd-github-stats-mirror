@@ -1,4 +1,5 @@
 class PullRequest
+  attr_reader :repo_name, :number
 
   def initialize(repo_name, number)
     @repo_name = repo_name
@@ -34,6 +35,10 @@ class PullRequest
 
   def commits
     @commits ||= @client.pull_commits @repo_name, @number
+  end
+
+  def count_commits
+    fetch.commits
   end
 
   def labels
