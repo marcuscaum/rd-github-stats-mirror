@@ -1,4 +1,4 @@
-class PullRequestsReports
+class PullRequestsStats
 
   def initialize(prs)
     @prs = prs
