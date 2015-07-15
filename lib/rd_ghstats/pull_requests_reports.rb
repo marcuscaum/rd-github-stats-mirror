@@ -5,9 +5,9 @@ class PullRequestsReports
   end
 
   def count_all_comments
-    @prs.map do |request|
+    @prs.each_with_object({}) do |request, h|
       pr = pr(request)
-      { pr.number => pr.count_all_comments }
+      h[pr.number] = pr.count_all_comments
     end
   end
 
@@ -20,9 +20,9 @@ class PullRequestsReports
   end
 
   def measure_size
-    @prs.map do |request|
+    @prs.each_with_object({}) do |request, h|
       pr = pr(request)
-      { pr.number => pr.count_commits }
+      h[pr.number] = pr.count_commits
     end
   end
 
@@ -30,12 +30,10 @@ class PullRequestsReports
     return @prs.count { |pr| team.include? pr.user.login } unless team.nil?
 
     teams = Team.all
-    @prs.each_with_object({}) do |request, counts|
-      if (team = Team.find(teams, request.user.login))
-        counts[team.name] = counts.fetch(team.name, 0) + 1
-      else
-        puts "#{request.user.login} not inserted in any team."
-      end
+    ReportHelper.count(@prs) do |request|
+      team = Team.find(teams, request.user.login)
+      puts "WARN: #{request.user.login} not inserted in any team." if team.nil?
+      team.nil? ? 'Others' : team.name
     end
   end
 
