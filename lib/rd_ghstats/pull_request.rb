@@ -8,7 +8,7 @@ class PullRequest
   end
 
   def fetch
-    @client.pull_request @repo_name, @number
+    @pull_request ||= @client.pull_request @repo_name, @number
   end
 
   def self.count_by_state(prs)
@@ -21,10 +21,19 @@ class PullRequest
 
   # Comments added inside code diff
   def comments
-    @client.pull_comments @repo_name, @number
+    @comments ||= @client.pull_comments @repo_name, @number
+  end
+
+  # Comments added in the issue thread
+  def issue_comments
+    @issue_comments ||= Issue.new(@repo_name, @number).comments
+  end
+
+  def unified_comments
+    comments + issue_comments
   end
 
   def commits
-    @client.pull_commits @repo_name, @number
+    @commits ||= @client.pull_commits @repo_name, @number
   end
 end
