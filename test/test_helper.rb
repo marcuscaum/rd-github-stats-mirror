@@ -5,15 +5,9 @@ require 'webmock/minitest'
 require 'vcr'
 require 'pry'
 
-require 'rd_ghstats'
+require 'rd_github_stats'
 
 Minitest::Reporters.use!
-
-Github.configure do |c|
-  c.basic_auth = 'lucasandre:575f946dfb6be40d3672c8d4776814436e6dc4b4'
-  c.user = 'ResultadosDigitais'
-  c.org = 'ResultadosDigitais'
-end
 
 VCR.configure do |c|
   c.cassette_library_dir = 'test/fixtures/cassettes'

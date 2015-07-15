@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    rd-ghstats (0.0.0)
+    rd-github-stats (0.0.0)
       activesupport (~> 4.2)
-      octokit
+      octokit (~> 4.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -62,7 +62,7 @@ DEPENDENCIES
   minitest-reporters (~> 1.0)
   pry
   rake (~> 10.4)
-  rd-ghstats!
+  rd-github-stats!
   vcr (~> 2.9.3)
   webmock (~> 1.21)
 

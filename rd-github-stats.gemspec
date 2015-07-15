@@ -1,15 +1,15 @@
 Gem::Specification.new do |s|
-  s.name = 'rd-ghstats'
+  s.name = 'rd-github-stats'
   s.version = '0.0.0'
-  s.summary = 'RD Github stats'
-  s.description = 'Github stats for RD projects.'
-  #s.homepage = 'https://github.com/ResultadosDigitais/rd-ghstats
+  s.summary = 'RD Github Stats'
+  s.description = 'Simple reports for your Github projects.'
+  s.homepage = 'https://github.com/ResultadosDigitais/rd-github-stats'
   s.author = 'ResutadosDigitais'
   #s.email = ''
   s.files = `git ls-files`.split($/) # Ensures that only versioned files are used
   #s.license = 'MIT'
 
-  s.add_runtime_dependency "octokit"
+  s.add_runtime_dependency "octokit", "~> 4.0.1"
   s.add_runtime_dependency "activesupport", "~> 4.2"
 
   s.add_development_dependency "bundler", "~> 1.8"
