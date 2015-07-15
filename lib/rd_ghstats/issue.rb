@@ -17,7 +17,7 @@ class Issue
   end
 
   def labels
-    fetch.labels
+    @labels ||= fetch.labels
   end
 
   def self.count_comments(issues)

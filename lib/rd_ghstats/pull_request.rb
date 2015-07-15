@@ -42,6 +42,6 @@ class PullRequest
   end
 
   def labels
-    issue.fetch.labels
+    @labels ||= issue.fetch.labels
   end
 end
