@@ -11,6 +11,7 @@ class Issue
     @issue ||= @client.issue @repo_name, @number
   end
 
+  # Comments added in the issue thread
   def comments
     @client.issue_comments @repo_name, @number
   end

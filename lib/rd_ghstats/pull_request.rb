@@ -7,6 +7,10 @@ class PullRequest
     @client = Octokit.client
   end
 
+  def fetch
+    @client.pull_request @repo_name, @number
+  end
+
   def self.count_by_state(prs)
     ReportHelper.count(prs) { |pr| pr.state }
   end
@@ -15,6 +19,7 @@ class PullRequest
     ReportHelper.count(prs) { |pr| pr.user.login }
   end
 
+  # Comments added inside code diff
   def comments
     @client.pull_comments @repo_name, @number
   end
