@@ -41,11 +41,11 @@ class PullRequestsReports
 
   private
 
-  def pr(request)
-    PullRequest.new repo_name(request), request.number
-  end
+    def pr(request)
+      PullRequest.new repo_name(request), request.number
+    end
 
-  def repo_name(request)
-    request.head.repo.full_name
-  end
+    def repo_name(request)
+      request.head.repo.full_name
+    end
 end
