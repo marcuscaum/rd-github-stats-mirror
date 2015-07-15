@@ -16,4 +16,9 @@ class Repo
     return issues unless filter_prs
     issues.select { |i| !i.respond_to? :pull_request }
   end
+
+  def pr_through_issues(state: 'open', since: TIME_WINDOW)
+    issues = @client.issues @repo, state: state, since: since
+    issues.select { |i| i.respond_to? :pull_request }
+  end
 end

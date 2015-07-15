@@ -2,8 +2,10 @@ require 'octokit'
 require 'active_support/all'
 require 'pry'
 
-require_relative 'rd_ghstats/repo'
 require_relative 'rd_ghstats/report_helper'
+require_relative 'rd_ghstats/repo'
+require_relative 'rd_ghstats/pull_request'
+require_relative 'rd_ghstats/issue'
 
 Octokit.configure do |c|
   c.login = 'lucasandre'
