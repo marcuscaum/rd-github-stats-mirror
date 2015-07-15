@@ -4,6 +4,8 @@ class PullRequestsReports
     @prs = prs
   end
 
+  # Count all comments grouping by PR.
+  # It considers unified comments: added in the diffs (PR) and in the thread.
   def count_all_comments
     @prs.each_with_object({}) do |request, h|
       pr = pr(request)
@@ -11,14 +13,17 @@ class PullRequestsReports
     end
   end
 
+  # Groups by state (open, closed)
   def count_by_state
     ReportHelper.count(@prs) { |pr| pr.state }
   end
 
+  # Groups by user
   def count_by_user
     ReportHelper.count(@prs) { |pr| pr.user.login }
   end
 
+  # Number of commits grouped by PR
   def measure_size
     @prs.each_with_object({}) do |request, h|
       pr = pr(request)
@@ -26,6 +31,7 @@ class PullRequestsReports
     end
   end
 
+  # Groups by team
   def count_by_team(team = nil)
     return @prs.count { |pr| team.include? pr.user.login } unless team.nil?
 
