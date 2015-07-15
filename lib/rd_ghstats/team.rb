@@ -1,6 +1,8 @@
 class Team
+  attr_reader :name, :members
 
-  def initialize(members)
+  def initialize(name, members)
+    @name = name
     @members = members
   end
 
@@ -9,38 +11,38 @@ class Team
   end
 
   def self.pope
-    self.new %w(andrehjr lucasandre brodock pedro-brentan jonatas)
+    self.new "POPE", %w(andrehjr lucasandre brodock pedro-brentan jonatas)
   end
 
   def self.vikings
-    self.new %w(danilodelponte lleos lucaskds thiago-sydow thiesen)
+    self.new "Vikings", %w(danilodelponte lleos lucaskds thiago-sydow thiesen)
   end
 
   def self.vortex
-    self.new %w(pedrovitti murilloflores LeoSL leonardorisch filipenasc)
+    self.new "VorteX", %w(pedrovitti murilloflores LeoSL leonardorisch filipenasc)
   end
 
   def self.mushin
-    self.new %w(guih jeanmatheussouto matheusteixeira pedronauck tchiarato)
+    self.new "Mushin", %w(guih jeanmatheussouto matheusteixeira pedronauck tchiarato)
   end
 
   def self.pudim
-    self.new %w(geisonbiazus marcelinol mauriciokj nandosousafr)
+    self.new "Pudim", %w(geisonbiazus marcelinol mauriciokj nandosousafr)
   end
 
   def self.solucao
-    self.new %w(rodrigoquaresma liviaamorim)
+    self.new "Solucao", %w(rodrigoquaresma liviaamorim sibeltrame)
   end
 
   def self.infernal
-    self.new %w(joaohornburg marcelorxaviers danielfmai xptavares)
+    self.new "Infernal", %w(joaohornburg marcelorxaviers danielfmai xptavares)
   end
 
   def self.integracao
-    self.new %w(brunogianni)
+    self.new "Integracao", %w(brunogianni)
   end
 
   def self.legend
-    self.new %w(pcasaretto)
+    self.new "Legend", %w(pcasaretto)
   end
 end
