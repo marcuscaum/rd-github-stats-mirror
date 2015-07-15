@@ -26,6 +26,10 @@ class PullRequestsReports
     end
   end
 
+  def count_by_team(team)
+    @prs.count { |pr| team.include? pr.user.login }
+  end
+
   private
 
   def pr(request)

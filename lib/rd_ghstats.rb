@@ -6,6 +6,7 @@ require_relative 'rd_ghstats/report_helper'
 require_relative 'rd_ghstats/repo'
 require_relative 'rd_ghstats/pull_request'
 require_relative 'rd_ghstats/issue'
+require_relative 'rd_ghstats/team'
 require_relative 'rd_ghstats/pull_requests_reports'
 
 Octokit.configure do |c|
