@@ -19,7 +19,7 @@ class Team
   end
 
   def self.vortex
-    self.new "VorteX", %w(pedrovitti murilloflores LeoSL leonardorisch filipenasc)
+    self.new "VorteX", %w(pedrovitti murilloflores LeoSL leonardorisch filipenasc marcuscaum)
   end
 
   def self.mushin
@@ -31,11 +31,11 @@ class Team
   end
 
   def self.solucao
-    self.new "Solucao", %w(rodrigoquaresma liviaamorim sibeltrame)
+    self.new "Solucao", %w(rodrigoquaresma liviamorim sibeltrame)
   end
 
   def self.infernal
-    self.new "Infernal", %w(joaohornburg marcelorxaviers danielfmai xptavares)
+    self.new "Infernal", %w(joaohornburg marcelorxaviers danielfmai xptavares cnascimentord)
   end
 
   def self.integracao
@@ -44,5 +44,13 @@ class Team
 
   def self.legend
     self.new "Legend", %w(pcasaretto)
+  end
+
+  def self.all
+    [pope, vikings, vortex, mushin, pudim, solucao, infernal, integracao, legend]
+  end
+
+  def self.find(teams, user)
+    teams.each { |team| return team if team.include? user } && nil
   end
 end

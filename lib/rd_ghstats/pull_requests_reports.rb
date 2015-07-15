@@ -26,8 +26,17 @@ class PullRequestsReports
     end
   end
 
-  def count_by_team(team)
-    @prs.count { |pr| team.include? pr.user.login }
+  def count_by_team(team = nil)
+    return @prs.count { |pr| team.include? pr.user.login } unless team.nil?
+
+    teams = Team.all
+    @prs.each_with_object({}) do |request, counts|
+      if (team = Team.find(teams, request.user.login))
+        counts[team.name] = counts.fetch(team.name, 0) + 1
+      else
+        puts "#{request.user.login} not inserted in any team."
+      end
+    end
   end
 
   private
