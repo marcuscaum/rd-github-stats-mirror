@@ -29,10 +29,14 @@ class PullRequest
   end
 
   def issue
-    Issue.new @repo_name, @number
+    @issue ||= Issue.new @repo_name, @number
   end
 
   def commits
     @commits ||= @client.pull_commits @repo_name, @number
+  end
+
+  def labels
+    issue.fetch.labels
   end
 end
