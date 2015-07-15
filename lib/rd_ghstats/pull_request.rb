@@ -3,7 +3,6 @@ class PullRequest
   def initialize(repo_name, number)
     @repo_name = repo_name
     @number = number
-    @repo = Repo.new repo_name
     @client = Octokit.client
   end
 
@@ -26,11 +25,26 @@ class PullRequest
 
   # Comments added in the issue thread
   def issue_comments
-    @issue_comments ||= Issue.new(@repo_name, @number).comments
+    @issue_comments ||= issue.comments
   end
 
   def unified_comments
     comments + issue_comments
+  end
+
+  def count_all_comments
+    fetch.comments + issue.fetch.comments
+  end
+
+  def issue
+    Issue.new @repo_name, @number
+  end
+
+  def self.count_all_comments(prs)
+    prs.map do |pr|
+      pr_obj = PullRequest.new(pr.head.repo.full_name, pr.number)
+      { pr.number => pr_obj.count_all_comments }
+    end
   end
 
   def commits

@@ -2,7 +2,6 @@ class Issue
 
   def initialize(repo_name, number)
     @repo_name = repo_name
-    @repo = Repo.new repo_name
     @number = number
     @client = Octokit.client
   end
