@@ -19,8 +19,8 @@ class PullRequestsStats
   end
 
   # Groups by user
-  def count_by_user
-    ReportHelper.count(@prs) { |pr| pr.user.login }
+  def count_by_user(user = nil)
+    ReportHelper.count(@prs, user) { |pr| pr.user.login }
   end
 
   # Number of commits grouped by PR

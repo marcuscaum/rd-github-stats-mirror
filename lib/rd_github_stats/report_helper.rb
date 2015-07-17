@@ -8,8 +8,13 @@ module ReportHelper
   #   # Count of PRs grouped by user
   #   ReportHelper.count(pull_requests).count { |pr| pr.user.login }
   #   => { 'user1' => 1, 'user2' => 4, 'user3' => 2 }
-  def self.count(collection)
+  #
+  #   # Count specific user PRs
+  #   ReportHelper.count(pull_requests, 'user2') { |pr| pr.user.login }
+  #   => 4
+  def self.count(collection, key = nil)
     return collection.size unless block_given?
+    return collection.count { |el| key == yield(el) } unless key.nil?
 
     collection.each_with_object({}) do |el_key, counts|
       group_key = yield el_key
