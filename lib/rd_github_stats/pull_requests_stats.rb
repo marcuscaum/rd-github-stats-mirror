@@ -24,7 +24,7 @@ class PullRequestsStats
   end
 
   # Number of commits grouped by PR
-  def measure_size
+  def size
     @prs.each_with_object({}) do |request, h|
       pr = pr(request)
       h[pr.number] = pr.count_commits
@@ -41,6 +41,24 @@ class PullRequestsStats
       puts "WARN: #{request.user.login} not inserted in any team." if team.nil?
       team.nil? ? 'Others' : team.name
     end
+  end
+
+  def collaborations(user)
+    @prs.to_a.inject(0) do |sum, request|
+      if request.user.login != user
+        comments = pr(request).unified_comments
+        sum += comments.count { |comment| comment.user.login == user }
+      end
+    end
+  end
+
+  # Avg time in seconds
+  def avg_qa_time(user)
+    user_prs = @prs.select { |pr| pr.user.login == user }
+    qa_time = user_prs.map do |request|
+      request.closed_at - request.created_at
+    end
+    qa_time.inject(:+) / qa_time.size
   end
 
   private

@@ -13,7 +13,7 @@ class Issue
 
   # Comments added in the issue thread
   def comments
-    @client.issue_comments @repo_name, @number
+    @comments ||= @client.issue_comments @repo_name, @number
   end
 
   def labels
