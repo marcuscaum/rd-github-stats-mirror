@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.description = 'Simple reports for your Github projects.'
   s.homepage = 'https://github.com/ResultadosDigitais/rd-github-stats'
   s.author = 'ResutadosDigitais'
-  s.email = ''
+  s.email = 'lucas.alencar@resultadosdigitais.com.br'
   s.files = `git ls-files`.split($/) # Ensures that only versioned files are used
   s.license = 'MIT'
 
