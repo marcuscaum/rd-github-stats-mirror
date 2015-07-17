@@ -52,13 +52,17 @@ class PullRequestsStats
     end
   end
 
-  # Avg time in seconds
-  def avg_qa_time(user)
+  # Durations in seconds
+  def duration(user)
     user_prs = @prs.select { |pr| pr.user.login == user }
-    qa_time = user_prs.map do |request|
-      request.closed_at - request.created_at
+    user_prs.each_with_object({}) do |request, h|
+      h[request.number] = request.closed_at - request.created_at
     end
-    qa_time.inject(:+) / qa_time.size
+  end
+
+  def avg_duration(user)
+    duration = duration(user)
+    duration.values.inject(:+) / duration.size
   end
 
   private
