@@ -53,16 +53,17 @@ class PullRequestsStats
   end
 
   # Durations in seconds
-  def duration(user)
-    user_prs = @prs.select { |pr| pr.user.login == user }
-    user_prs.each_with_object({}) do |request, h|
-      h[request.number] = request.closed_at - request.created_at
+  def duration
+    @prs.each_with_object({}) do |request, h|
+      unless request.closed_at.nil?
+        h[request.number] = request.closed_at - request.created_at
+      end
     end
   end
 
-  def avg_duration(user)
-    duration = duration(user)
-    duration.values.inject(:+) / duration.size
+  def avg_duration
+    dur = duration
+    dur.values.inject(:+) / dur.size
   end
 
   private
