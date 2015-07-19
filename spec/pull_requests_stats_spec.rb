@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PullRequestsStats do
 
-  let(:prs) { load_response('pull_requests') }
+  let(:prs) { load_response(:pull_requests) }
   let(:stats) { PullRequestsStats.new prs }
 
   it 'counts by state' do

@@ -1,7 +1,8 @@
 class PullRequestsStats
 
-  def initialize(prs)
+  def initialize(prs, repo_name = nil)
     @prs = prs
+    @repo_name = repo_name
   end
 
   # Count all comments grouping by PR.
@@ -75,6 +76,14 @@ class PullRequestsStats
     end
 
     def repo_name(request)
-      request.head.repo.full_name
+      @repo_name || fetch_repo_name(request)
+    end
+
+    def fetch_repo_name(request)
+      if request.respond_to? :head
+        request.head.repo.full_name
+      else
+        request.url =~ /\/repos\/(.*\/.*)\/issues\/(.*)/ && $1
+      end
     end
 end
