@@ -10,7 +10,7 @@ describe PullRequestsStats do
   end
 
   it 'counts by user' do
-    users_count = { "lucasandre" => 1, "jonatas" => 1, "andrehjr" => 1 }
+    users_count = { "lucasandre" => 1, "guih" => 1, "andrehjr" => 1 }
     expect(stats.count_by_user).to be_eql(users_count)
   end
 
@@ -39,5 +39,14 @@ describe PullRequestsStats do
     comments = load_response('comments')
     allow_any_instance_of(PullRequest).to receive(:unified_comments).and_return(comments)
     expect(stats.collaborations('andrehjr')).to be_eql(6)
+  end
+
+  it 'counts by teams' do
+    teams = { "POPE" => 2, "Mushin" => 1 }
+    expect(stats.count_by_team).to be_eql(teams)
+  end
+
+  it 'counts for a specific team' do
+    expect(stats.count_by_team(Team.pope)).to be_eql(2)
   end
 end
