@@ -1,0 +1,30 @@
+-
+  number: 4200
+  state: open
+  created_at: 2015-07-17 11:45:30
+  closed_at:
+  user:
+    login: lucasandre
+  head:
+    repo:
+      full_name: 'owner/reponame'
+-
+  number: 1500
+  state: open
+  created_at: 2015-07-17 11:45:30
+  closed_at:
+  user:
+    login: jonatas
+  head:
+    repo:
+      full_name: 'owner/reponame'
+-
+  number: 1600
+  state: closed
+  created_at: 2015-07-16 11:45:30
+  closed_at: 2015-07-17 11:45:30
+  user:
+    login: andrehjr
+  head:
+    repo:
+      full_name: 'owner/reponame'

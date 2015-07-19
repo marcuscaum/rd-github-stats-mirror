@@ -47,7 +47,9 @@ class PullRequestsStats
     @prs.to_a.inject(0) do |sum, request|
       if request.user.login != user
         comments = pr(request).unified_comments
-        sum += comments.count { |comment| comment.user.login == user }
+        sum + comments.count { |comment| comment.user.login == user }
+      else
+        sum
       end
     end
   end
