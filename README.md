@@ -53,4 +53,10 @@ pr_stats.measure_size
 
 # Count PRs grouping by team
 pr_stats.count_by_team
+
+# Specific stats for users
+user_stats = UserPullRequestStats.new('user1', open_prs)
+
+# Number of comments performed in other prs, where user is not author
+user_stats.collaborations
 ```
