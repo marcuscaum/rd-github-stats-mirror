@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe PullRequestsStats do
+describe RDGithubStats::PullRequestsStats do
 
   let(:prs) { load_response(:pull_requests) }
-  let(:stats) { PullRequestsStats.new prs }
+  let(:stats) { RDGithubStats::PullRequestsStats.new prs }
 
   it 'counts by state' do
     expect(stats.count_by_state).to be_eql({ "open" => 2, "closed" => 1 })
