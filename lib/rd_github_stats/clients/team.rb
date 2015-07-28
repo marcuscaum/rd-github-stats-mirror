@@ -54,5 +54,12 @@ module RDGithubStats
     def self.find(teams, user)
       teams.each { |team| return team if team.include? user } && nil
     end
+
+    def self.profiles(team)
+      team.each_with_object({}) do |x, y| 
+        y[x] = Octokit.user(x)
+      end
+    end
+
   end
 end
