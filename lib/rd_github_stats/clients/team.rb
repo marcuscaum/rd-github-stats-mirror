@@ -1,10 +1,11 @@
 module RDGithubStats
   class Team
-    attr_accessor :name, :members
+    attr_accessor :name, :members, :members_login
 
-    def initialize(name, members)
+    def initialize(name, members_login)
       @name = name
-      @members = members
+      @members_login = members_login
+      @members = members_login.map {|username| User.new(username)}
     end
 
     def include?(user)
@@ -54,10 +55,10 @@ module RDGithubStats
     def self.find(teams, user)
       teams.each { |team| return team if team.include? user } && nil
     end
-
-    def self.profiles(team)
-      team.each_with_object({}) do |x, y| 
-        y[x] = Octokit.user(x)
+    
+    def profiles
+      @members.each_with_object({}) do |member, profiles| 
+        profiles[member] = member.fetch
       end
     end
 

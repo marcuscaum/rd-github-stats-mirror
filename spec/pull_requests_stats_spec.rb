@@ -19,13 +19,13 @@ describe RDGithubStats::PullRequestsStats do
   end
 
   it 'counts all comments in PRs' do
-    allow_any_instance_of(PullRequest).to receive(:count_all_comments).and_return(42)
+    allow_any_instance_of(RDGithubStats::PullRequest).to receive(:count_all_comments).and_return(42)
     comments = { 4200 => 42, 1500 => 42, 1600 => 42 }
     expect(stats.count_all_comments).to be_eql(comments)
   end
 
   it 'measures the size of PRs' do
-    allow_any_instance_of(PullRequest).to receive(:count_commits).and_return(42)
+    allow_any_instance_of(RDGithubStats::PullRequest).to receive(:count_commits).and_return(42)
     sizes = { 4200 => 42, 1500 => 42, 1600 => 42 }
     expect(stats.size).to be_eql(sizes)
   end
@@ -37,7 +37,7 @@ describe RDGithubStats::PullRequestsStats do
 
   it 'counts all the collaborations made by a specific user in the PRs' do
     comments = load_response('comments')
-    allow_any_instance_of(PullRequest).to receive(:unified_comments).and_return(comments)
+    allow_any_instance_of(RDGithubStats::PullRequest).to receive(:unified_comments).and_return(comments)
     expect(stats.collaborations('andrehjr')).to be_eql(6)
   end
 
@@ -47,6 +47,6 @@ describe RDGithubStats::PullRequestsStats do
   end
 
   it 'counts for a specific team' do
-    expect(stats.count_by_team(Team.pope)).to be_eql(2)
+    expect(stats.count_by_team(RDGithubStats::Team.pope)).to be_eql(2)
   end
 end
